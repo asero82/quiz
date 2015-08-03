@@ -24,13 +24,13 @@
                 <span><a href="/quizes">Preguntas</a></span>
                 <span><a href="/author">Créditos</a></span>
             </nav>
-                
+
             <section class="main" id="s1">
-                <% if (errors.lenght) { %>
+                <% if (errors.length) { %>
                 <span id="ErrorMsgs">
                     Corregir errores:<br />
-                    <% for (var e in errors ) { %>
-                        <span>>%= errors[e].message %></span><br />
+                    <% for (var i in errors ) { %>
+                        <span><%= errors[i].message %></span><br />
                     <% } %>
                 </span>
                 <% } %>
