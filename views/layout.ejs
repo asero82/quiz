@@ -24,9 +24,17 @@
                 <span><a href="/quizes">Preguntas</a></span>
                 <span><a href="/author">Créditos</a></span>
             </nav>
-
+                
             <section class="main" id="s1">
-                <%- body %>
+                <% if (errors.lenght) { %>
+                <span id="ErrorMsgs">
+                    Corregir errores:<br />
+                    <% for (var e in errors ) { %>
+                        <span>>%= errors[e].message %></span><br />
+                    <% } %>
+                </span>
+                <% } %>
+                <div><%- body %></div>
             </section>
 
             <footer class="main" id="f1">
