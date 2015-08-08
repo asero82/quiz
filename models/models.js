@@ -18,8 +18,8 @@ var Sequelize = require('sequelize');
 
 //Usar BBDD SQLite o Postgres:
 var sequelize = new Sequelize(
-                        DB_name, 
-                        user, 
+                        DB_name,
+                        user,
                         pwd,
                         {
                             dialect: protocol,
@@ -30,7 +30,7 @@ var sequelize = new Sequelize(
                             omitNull: true //solor postgres
                         }
                );
-               
+
 // Importar la definición de la tabla quiz
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
@@ -53,4 +53,4 @@ sequelize.sync().then(function(){
             }).then(function(){console.log('Base de datos inicializada')});
         }
     })
-})               
+})

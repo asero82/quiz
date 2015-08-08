@@ -1,7 +1,7 @@
 <label for="preg" class="rem">Pregunta:</label>
-<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>" placeholder="Aqui la pregunta... " autofocus /></br>
+<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>" placeholder="Su pregunta... " autofocus /></br>
 <label for="resp" class="rem">Respuesta:</label>
-<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>" placeholde="Aqui la respuesta..." /></br>
+<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>" placeholder="Su respuesta..." /></br>
 <select name="quiz[tema]" selected="<%= quiz.tema %>">
   <option value="otro" <% if(quiz.tema === "otro"){ %>selected <% } %>>Otro</option>
   <option value="humanidades" <% if(quiz.tema === "humanidades"){ %>selected <% } %>>Humanidades</option>

@@ -11,12 +11,12 @@ router.get('/', function(req, res, next) {
 // Autoload de comandos con :quizId
 router.param('quizId', quizController.load); // Autoload: quizId
 
-router.get('/quizes', quizController.index);
+router.get('/quizes/:search(\\D)?', quizController.index);
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
-router.get('/quizes/new', quizController.new);
-router.post('/quizes/create', quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
+router.post('/quizes/create', quizController.create);
+router.get('/quizes/new', quizController.new);
 router.put('/quizes/:quizId(\\d+)', quizController.update);
 router.delete('/quizez/:quizId(\\d+)', quizController.destroy);
 

@@ -18,11 +18,26 @@ exports.load = function(req, res, next, quizId){
 
 //GET /quizes
 exports.index = function(req, res){
-    models.Quiz.findAll().then(function(quizes){
-        res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+    var buscar = _get_buscar(req.query.search);
+    console.log("buscar: " + buscar + "\n");
+    models.Quiz
+        .findAll({
+                where: [" pregunta like ?", buscar],
+                order: [["pregunta","ASC"]]
+        })
+        .then(function(quizes){
+            res.render('quizes/index.ejs',
+                        {quizes: quizes,
+                            errors: []
+            });
     })
 }
 
+_get_buscar = function (search){
+    var query = search || "%";
+    query = query.replace(/(\s|\b)/mig, '%');
+    return query.toLowerCase();
+}
 //GET /quizes/:id
 exports.show = function(req, res) {
     res.render('quizes/show', {quiz: req.quiz, errors: []});
@@ -47,6 +62,7 @@ exports.answer = function (req, res) {
 
 // GET /quizes/new
 exports.new = function(req, res){
+    console.log("en new");
     var quiz = models.Quiz.build( //crea un objeto build
         {pregunta: "", respuesta: "", tema:"otro"}
     );
