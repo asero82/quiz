@@ -3,7 +3,18 @@ module.exports = function(sequelize, DataTypes) {
         'Quiz',
         {
             pregunta: DataTypes.STRING,
-            respuesta: DataTypes.STRING
+            respuesta: DataTypes.STRING,
+            indexes:[
+                {
+                    name: 'preguntas_en_minusculas',
+                    fields:[
+                        sequelize.fn(
+                            'lower',
+                            sequelize.col('pregunta')
+                        )
+                    ]
+                }
+            ]
         }
     );
 };
