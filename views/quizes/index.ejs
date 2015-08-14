@@ -5,11 +5,12 @@
 </form>
 <table>
 <table style="border: 1 solid red;">
-<tr><th>Pregunta</th><th>Tema</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+<tr><th>Pregunta</th><th>Tema</th><% if(session.user) { %><th>&nbsp;</th><th>&nbsp;</th><% } %></tr>
 <% var i; for (i=0; i < quizes.length; i++){ %>
     <tr>
         <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
         <td><%= quizes[i].tema %></td>
+        <% if (session.user) { %>
         <td><a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
         <td>
         <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
@@ -18,7 +19,10 @@
         </button>
         </form>
         </td>
+        <% } %>
         </tr>
 <% } %>
 </table><br>
+<% if(session.user) { %>
 <a href="/quizes/new"><button type="button">Crear Pregunta</button></a>
+<% } %>
