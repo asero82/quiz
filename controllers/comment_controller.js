@@ -34,8 +34,6 @@ exports.create = function (req, res){
     QuizId: req.params.quizId
   });
 
-console.log(JSON.stringify(comment));
-
   comment
   .validate()
   .then(
@@ -63,9 +61,9 @@ console.log(JSON.stringify(comment));
 };
 
 // GET /quizes/:quizId/comments/:commentId/publish
-exports.publish = function(req, res){  
+exports.publish = function(req, res){
   req.comment.publicado = true;
-  
+
   req.comment.save(
     {fields: ["publicado"]}
   ).then(function(){
