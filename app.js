@@ -44,6 +44,31 @@ app.use(
   }
 );
 
+// Auto-logout: Si pasa dos minutos inactivo, se descruye la session
+
+app.use(function(req, res, next){
+  if (req.session.user){     
+    var ahora = new Date().getTime();
+    var maximoTiempoInactivo = 2 * 60 * 1000;      
+    var tiempoUltimaTransaccion = req.session.user.tiempoUltimaTransaccion;
+    
+    var superoMaximoTiempoInactivo = (ahora - tiempoUltimaTransaccion) > maximoTiempoInactivo;
+    if (superoMaximoTiempoInactivo){
+      
+      req.session.errors= [{message: "Su sesión ha caducado..."}];
+      
+      req.session.redir = req.path;
+      delete req.session.user;
+      res.redirect("/login");
+    }else{
+      req.session.user.tiempoUltimaTransaccion = new Date().getTime();
+    }
+  }
+  
+  next();
+});
+
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
