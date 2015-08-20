@@ -1,0 +1,93 @@
+<%
+var preguntas_con_respuestas = [];
+for (var i = 0; i < comments.length; i++) {
+    if (preguntas_con_respuestas.indexOf(comments[i].QuizId) === -1){
+        preguntas_con_respuestas.push(comments[i].QuizId);
+    }
+}
+%>
+<h2>Estadísticas actuales</h2>
+<style media="screen">
+table {
+    margin:0 auto;
+    padding:0px;
+    width:80%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #333333;
+    border-radius: 5px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    height:100%;
+}
+table tr:last-child td:last-child {
+    border-radius: 5px;
+}
+
+table tr:nth-child(odd){
+    background-color:#d4aaff;
+}
+
+table tr:nth-child(even){
+    background-color:#e5e5e5;
+}
+
+table tbody td{
+    vertical-align:middle;
+    border:1px solid #333333;
+    border-width:0px 1px 1px 0px;
+    text-align:center;
+    padding:10px;
+    font-size:16px;
+    font-family:Helvetica;
+    font-weight:normal;
+    color:#000000;
+}
+
+table tr:last-child td{
+    border-width:0px 1px 0px 0px;
+}
+table tr td:last-child{
+    border-width:0px 0px 1px 0px;
+}
+
+table tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+}
+
+table tr:first-child th{
+    background:-o-linear-gradient(bottom, #aaaaff 5%, #aa56ff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #aaaaff), color-stop(1, #aa56ff) );
+    background:-moz-linear-gradient( center top, #aaaaff 5%, #aa56ff 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#aaaaff", endColorstr="#aa56ff");	background: -o-linear-gradient(top,#aaaaff,aa56ff);
+    background-color:#aaaaff;
+    border:0px solid #333333;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:20px;
+    font-family:Helvetica;
+    font-weight:bold;
+    color:#ffffff;
+    padding: 0.25em 1em;
+}
+
+
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>Preguntas</th>
+            <th>Comentarios</th>
+            <th>Promedio comentarios por pregunta</th>
+            <th>Preguntas sin comentarios</th>
+            <th>Preguntas con comentarios</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= quizes.length %></td>
+            <td><%= comments.length %></td>
+            <td><%= (comments.length/quizes.length) %></td>
+            <td><%= Math.abs(preguntas_con_respuestas.length - quizes.length) %></td>
+            <td><%= preguntas_con_respuestas.length %></td>
+        </tr>
+    </tbody>
+</table>
